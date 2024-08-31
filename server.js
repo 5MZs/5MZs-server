@@ -1,14 +1,15 @@
-const express = require('express');
-const app = express();
+const express = require("express");
+const userRoutes = require("./src/user/routes");
 
-app.listen(8080, function(){
-    console.log('포트 8080 대기중...');
+const app = express();
+const port = 3000;
+
+app.use(express.json());
+
+app.get("/", (req, res) =>{
+    res.send('Hello World!');
 });
 
-app.get('/book', function(req,res){
-    res.send('도서 목록 관련 페이지 입니다.');
-})
+app.use("/api/v1/users", userRoutes);
 
-app.get('/', function(req,res){
-    res.sendFile(__dirname + '/index.html');
-})
+app.listen(port, () => console.log(`app listening on port ${port}`));
