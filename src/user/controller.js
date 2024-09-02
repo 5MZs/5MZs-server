@@ -8,6 +8,14 @@ const getUsers = (req, res) => {
   });
 };
 
+const getCardBenefitsInfo = (req, res) => {
+  pool.query(queries.getCardBenefitsInfo, (error, results) => {
+    if (error) throw error;
+    res.status(200).json(results.rows);
+  });
+};
+
 module.exports = {
   getUsers,
+  getCardBenefitsInfo,
 };
