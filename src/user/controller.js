@@ -1,6 +1,5 @@
 const pool = require('../../db');
 const queries = require('./queries');
-const { param } = require('./routes');
 
 const getUsers = (req, res) => {
   pool.query(queries.getUsers, (error, results) => {
