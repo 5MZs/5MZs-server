@@ -1,5 +1,6 @@
 const pool = require('../../db');
 const queries = require('./queries');
+const { param } = require('./routes');
 
 const getUsers = (req, res) => {
   pool.query(queries.getUsers, (error, results) => {
@@ -15,7 +16,16 @@ const getCardBenefitsInfo = (req, res) => {
   });
 };
 
+const getCardCompany = (req, res) => {
+  const cardCompanyName = req.params.cardcompany;
+  pool.query(queries.getCardCompany, [cardCompanyName], (error, results) => {
+    if (error) throw error;
+    res.status(200).json(results.rows);
+  });
+};
+
 module.exports = {
   getUsers,
   getCardBenefitsInfo,
+  getCardCompany,
 };
