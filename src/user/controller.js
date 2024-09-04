@@ -1,6 +1,6 @@
 const pool = require('../../db');
 const queries = require('../user/queries');
-const SECRET_KEY = require("../../.env");
+const SECRET_KEY = require("../../config");
 const jwt = require('jsonwebtoken');
 
 // 사용자 리스트 가져오기
