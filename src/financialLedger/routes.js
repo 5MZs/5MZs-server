@@ -5,5 +5,5 @@ const router = Router();
 
 router.get("/", controller.getFinancialLedger);
 router.post("/", controller.postFinancialLedger);
-
+router.post("/month", controller.postFinancialLedgerMonth);
 module.exports = router;
