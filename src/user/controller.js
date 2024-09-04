@@ -35,10 +35,6 @@ const postLogin = async (req, res,
       return res.status(401).json({ error: '사용자 ID 또는 비밀번호가 잘못되었습니다.' });
     }
     const match = bcrypt.compare(String(password), String(result.rows[0].password));
-    console.log(result.rows[0].user_id);
-    console.log(result.rows[0].password);
-    console.log(password);
-    console.log(match);
     if (match) {
 
       res.status(200).json({ message: '로그인 성공!' });
