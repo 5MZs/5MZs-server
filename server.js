@@ -15,8 +15,27 @@ app.get("/", (req, res) => {
   res.send("Hello World!");
 });
 
+app.use((req, res, next) => {
+  const error = new Error("Not Found");
+  error.status = 404;
+  next(error);
+});
+
+// 오류 처리 미들웨어
+app.use((err, req, res, next) => {
+  // 서버 로그 등 추가 가능
+  console.error(err.stack);
+
+  res.status(err.status || 500);
+  res.json({
+    error: {
+      message: err.message,
+    },
+  });
+});
+
 app.use("/", userRoutes);
 app.use("/api/v1/cardbenefitsinfo", cardBenefitsInfo);
-app.use("/api/v1/map",mapInfo)
+app.use("/api/v1/map", mapInfo);
 
 app.listen(port, () => console.log(`app listening on port ${port}`));
