@@ -17,7 +17,7 @@ const postJoin = async (req, res, next) => {
       return res.status(408).json({ error: "이미 있는 user_id 값입니다. 다시 입력해주세요." });
     }
     const insertResult = await pool.query(queries.insertQuery, [user_id, password, phone_number, nick_name, cardno]);
-    res.status(201).json(insertResult.rows[0]);
+    res.status(201).json({ message: '회원가입이 성공적으로 완료되었습니다.' });
   } catch (error) {
     console.error('Error during user registration:', error);
     res.status(500).json({ error: '서버 오류. 나중에 다시 시도해 주세요.' });
