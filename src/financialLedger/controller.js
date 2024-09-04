@@ -13,14 +13,14 @@ const getFinancialLedger = async (req, res) => {
 };
 // month 별로 조회 하기 to_Char 이용해야 할 것 처럼 보임
 const postFinancialLedgerMonth = async (req, res) => {
-  const { date } = req.body;
-  // date에서 월 추출 (예: '20240904'에서 '09' 추출)
+  const {token, date } = req.body;
+  const decoded = jwt.decode(token, { complete: true });
+  const user_id = decoded.payload.user_id;
+  // date에서 월 추출 (예: '2024-09'에서 '09' 추출)
   const month = date.substring(5, 7);
-  console.log('Extracted Month:', month);
-
   try {
     // 특정 월의 데이터를 가져오는 쿼리
-    const result = await pool.query(queries.postFinancialLedgerMonth, [month]);
+    const result = await pool.query(queries.postFinancialLedgerMonth, [month, user_id]);
 
     res.status(200).json(result.rows);
   } catch (error) {
