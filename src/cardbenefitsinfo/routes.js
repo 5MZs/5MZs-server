@@ -1,5 +1,5 @@
 const { Router } = require("express");
-const controller = require("../cardbenefitsinfo/contoller");
+const controller = require("./controller");
 
 const router = Router();
 

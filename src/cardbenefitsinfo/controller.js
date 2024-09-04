@@ -1,5 +1,5 @@
 const pool = require('../../db');
-const queries = require('../cardbenefitsinfo/queries');
+const queries = require('./queries');
 
 // 카드 혜택 정보 가져오기
 const getCardBenefitsInfo = async (req, res) => {
@@ -27,5 +27,5 @@ const getCardCompany = async (req, res) => {
 
 module.exports = {
   getCardBenefitsInfo,
-  getCardCompany
+  getCardCompany,
 };
