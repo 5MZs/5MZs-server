@@ -15,6 +15,10 @@ app.get("/", (req, res) => {
   res.send("Hello World!");
 });
 
+app.use("/", userRoutes);
+app.use("/api/v1/cardbenefitsinfo", cardBenefitsInfo);
+app.use("/api/v1/map", mapInfo);
+
 app.use((req, res, next) => {
   const error = new Error("Not Found");
   error.status = 404;
@@ -33,9 +37,5 @@ app.use((err, req, res, next) => {
     },
   });
 });
-
-app.use("/", userRoutes);
-app.use("/api/v1/cardbenefitsinfo", cardBenefitsInfo);
-app.use("/api/v1/map", mapInfo);
 
 app.listen(port, () => console.log(`app listening on port ${port}`));
