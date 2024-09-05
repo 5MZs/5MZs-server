@@ -1,6 +1,6 @@
 const pool = require('../../db');
 const queries = require('../user/queries');
-const SECRET_KEY = require("../../.env");
+const config = require("../../config");
 const jwt = require('jsonwebtoken');
 
 // 사용자 리스트 가져오기
@@ -54,7 +54,7 @@ const postLogin = async (req, res) => {
 
     if (inputPassword === storedPassword) {
       // JWT 생성
-      const token = jwt.sign({ user_id: user_id }, SECRET_KEY, { expiresIn: '1h' });
+      const token = jwt.sign({ user_id: user_id }, config.token.SECRET_KEY, { expiresIn: '1h' });
       
       return res.status(200).json({ message: '로그인 성공!', token});
     } else {
